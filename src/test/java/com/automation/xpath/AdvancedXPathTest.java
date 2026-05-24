@@ -24,6 +24,7 @@ public class AdvancedXPathTest {
 		// click on MacBook
 		driver.findElement(By.xpath("//div[@class='caption']//a[normalize-space()='MacBook']")).click();
 		
+		//validating the Product heading
 		String actualProductHeading = driver.findElement(By.xpath("//div[@class='btn-group']/following-sibling::h1[normalize-space()='MacBook']")).getText();
 		if(actualProductHeading.equals("MacBook")) {
 			System.out.println("Validation Passed: MacBook heading displayed correctly");
