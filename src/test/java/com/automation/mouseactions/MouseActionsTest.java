@@ -20,8 +20,6 @@ public class MouseActionsTest {
 		driver.get("https://demoqa.com/buttons");
 		// Add implicit wait to handle synchronization issues
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
 		
 		//  Create Actions class object to perform mouse actions
 		Actions action = new Actions(driver);
@@ -34,8 +32,8 @@ public class MouseActionsTest {
 		WebElement doubleClickButton = driver.findElement(By.id("doubleClickBtn"));
 		//action.doubleClick(doubleClickButton).build().perform();
 		
-		((org.openqa.selenium.JavascriptExecutor) driver)
-        .executeScript("arguments[0].scrollIntoView(true);", doubleClickButton);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		
 		
 		
 		// perform double click action on the button
@@ -62,16 +60,11 @@ public class MouseActionsTest {
 		  // Locate the "Right Click Me" button
 		WebElement rightClickButton = driver.findElement(By.id("rightClickBtn"));
 		
-		// Scroll into view (IMPORTANT FIX)
-		((org.openqa.selenium.JavascriptExecutor) driver)
-		        .executeScript("arguments[0].scrollIntoView(true);", rightClickButton);
-		
 	     // Perform right click action on the button
 		action.contextClick(rightClickButton).perform();
 		
 		  // Capture actual success message displayed after right click
-		//String actualRightClickMessage = driver.findElement(By.id("rightClickMessage")).getText();
-		String actualRightClickMessage =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rightClickMessage"))).getText();
+		String actualRightClickMessage = driver.findElement(By.id("rightClickMessage")).getText();
 		
 		  // Define expected success message
 		String expectedRightClickMessage = "You have done a right click";
