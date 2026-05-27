@@ -87,9 +87,9 @@ public class JavaScriptAlertTest {
 		
 		//Validation 3
 		if(jsPromptAlertResult.equals(expectedPromptAlertResult)) {
-			System.out.println("Validation3 got passed");
+			System.out.println("Validation Passed: Prompt alert handled successfully");
 		}else {
-			System.out.println("Validation3 got failed");
+			System.out.println("Validation Failed: Prompt alert not handled successfully");
 		}
 		driver.quit();
 	}
