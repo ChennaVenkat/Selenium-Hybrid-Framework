@@ -23,29 +23,29 @@ public class DragAndDrop {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		
 		// Locate draggable source element
-		WebElement draggableElement = driver.findElement(By.id("draggable"));
+		WebElement sourceElement = driver.findElement(By.id("draggable"));
 		
 		// Locate droppable target element
-		WebElement droppableElement = driver.findElement(By.id("droppable"));
+		WebElement targetElement = driver.findElement(By.id("droppable"));
 		
 		// Scroll until draggable element becomes visible
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView(true);", draggableElement);	
+		js.executeScript("arguments[0].scrollIntoView(true);", sourceElement);	
 		
 		// Wait until source element becomes clickable
-		wait.until(ExpectedConditions.visibilityOf(droppableElement));
+		wait.until(ExpectedConditions.visibilityOf(sourceElement));
 		
 		// Create Actions class object
 		Actions actions = new Actions(driver);
 		
 		// Perform drag and drop action
-		actions.dragAndDrop(draggableElement, droppableElement).perform();
+		actions.dragAndDrop(sourceElement, targetElement).perform();
 		
-		String actualMessage = droppableElement.getText();
-		String expectedMessage = "Dropped!";
+		String actualDropMessage = targetElement.getText();
+		String expectedDropMessage = "Dropped!";
 		
 		// Validate drag and drop result
-		if(actualMessage.equals(expectedMessage)) {
+		if(actualDropMessage.equals(expectedDropMessage)) {
 			System.out.println("Drag and Drop operation completed successfully");
 		} else {
 			System.out.println("Drag and Drop operation failed");

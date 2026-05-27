@@ -15,22 +15,22 @@ public class DragAndDropTest {
 		driver.get("https://jqueryui.com/droppable/");
 		
 		//WebElement iFrameElement = driver.findElement(By.xpath("//div[@id='content']//iframe"));
-		WebElement iFrameElement = driver.findElement(By.tagName("iframe"));
+		WebElement dragDropFrame = driver.findElement(By.tagName("iframe"));
 		
-		driver.switchTo().frame(iFrameElement);
+		driver.switchTo().frame(dragDropFrame);
 		
-		WebElement dragElement = driver.findElement(By.id("draggable"));
-		WebElement dropElement = driver.findElement(By.id("droppable"));
+		WebElement sourceElement = driver.findElement(By.id("draggable"));
+		WebElement targetElement = driver.findElement(By.id("droppable"));
 		
 		Actions actions = new Actions(driver);
-		actions.dragAndDrop(dragElement, dropElement).build().perform();
+		actions.dragAndDrop(sourceElement, targetElement).perform();
 		
 		// Get updated text AFTER drop
-		String actualText = dropElement.getText();
+		String actualDropMessage = targetElement.getText();
 
-		String expectedText = "Dropped!";
+		String expectedDropMessage = "Dropped!";
 
-		if (actualText.equals(expectedText)) {
+		if (actualDropMessage.equals(expectedDropMessage)) {
 
 		    System.out.println("Validation Passed - Drag and Drop successful");
 
@@ -39,6 +39,7 @@ public class DragAndDropTest {
 		    System.out.println("Validation Failed - Drag and Drop failed");
 		}
 		
+		driver.switchTo().defaultContent();
 		driver.quit();
 	}
 }
