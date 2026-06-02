@@ -5,7 +5,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,9 +26,9 @@ public class BrokenLinksStatusCodeTest {
 		System.out.println(links.size());
 		
 		// Counters for tracking link status
-		int valid = 0;
-		int broken = 0;
-		int serverError = 0;
+		int validLinksCount = 0;
+		int brokenLinksCount = 0;
+		int serverErrorLinksCount = 0;
 		
 		// Iterate through each link
 		for (WebElement link:links) {
@@ -61,32 +60,31 @@ public class BrokenLinksStatusCodeTest {
 			// Check if link is valid
 			if(statusCode == 200) {
 				System.out.println(href+" --> "+statusCode+" --> Valid");
-				valid++;
+				validLinksCount++;
 			}
 			
 			// Check if link is broken (4xx client errors)
-			else if(statusCode >=400 || statusCode <= 500 ){
+			else if(statusCode >=400 && statusCode < 500 ){
 				System.out.println(href+ " --> "+statusCode+" --> broken");
-				broken++;
+				brokenLinksCount++;
 			}
 			
 			// Check if server-side error (5xx)
-			else if(statusCode > 500) {
+			else if(statusCode >= 500) {
 				System.out.println(href+" --> "+statusCode+" --> server error");
-				serverError++;
+				serverErrorLinksCount++;
 			}
 			
 			 // Close HTTP connection
 			httpURLConnection.disconnect();
 			
-			  // Print final execution summary
-			System.out.println("Final Summary");
-			System.out.println("Total number of valid links are : "+valid);
-			System.out.println("Total number of broken links are : "+broken);
-			System.out.println("Total number of server error links are : "+serverError);
-			
-			
 		}
+		
+		  // Print final execution summary
+		System.out.println("Final Summary");
+		System.out.println("Total number of valid links are : "+validLinksCount);
+		System.out.println("Total number of broken links are : "+brokenLinksCount);
+		System.out.println("Total number of server error links are : "+serverErrorLinksCount);
 		 
 		driver.quit();
 	}
