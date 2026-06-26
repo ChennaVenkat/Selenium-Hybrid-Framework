@@ -28,8 +28,7 @@ public class StaticDropdownTest {
 		
 		
 		// Create Select class object
-		Select colorDropdownSelect = new Select(colorDropdown);
-		
+		Select colorDropdownSelect = new Select(colorDropdown);		
 		// print all the options in dropdown
 		List<WebElement> allColorOptions = colorDropdownSelect.getOptions();
 		for(WebElement  color :  allColorOptions) {
