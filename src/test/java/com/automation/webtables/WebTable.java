@@ -26,8 +26,8 @@ public class WebTable {
 		
 //		Print last row data
 		System.out.println(" === last row data === ");
-		 List<WebElement> lastRowElements = driver.findElements(By.xpath("//table//tbody//tr[last()]//td"));
-		for(WebElement element:lastRowElements) {
+		 List<WebElement> lastrowElements = driver.findElements(By.xpath("//table//tbody//tr[last()]//td"));
+		for(WebElement element:lastrowElements) {
 			System.out.println(element.getText());
 		}
 		System.out.println();
@@ -52,8 +52,8 @@ public class WebTable {
 		 List<WebElement> totalCells = driver.findElements(By.xpath("//table//tbody//tr//td"));
 		 System.out.println("Total number of cells in a table are : "+ totalCells.size());
 		 
-		 WebElement firstRowFourthColumnElement = driver.findElement(By.xpath("//table//tbody//tr[1]//td[4]"));
-		 String actualText = firstRowFourthColumnElement.getText();
+		 WebElement firstrowFourthColumnElement = driver.findElement(By.xpath("//table//tbody//tr[1]//td[4]"));
+		 String actualText = firstrowFourthColumnElement.getText();
 		 
 		 if(actualText.equals("Definiebas0")) {
 			 System.out.println("PASS: 'Definiebas0' is present in table");
