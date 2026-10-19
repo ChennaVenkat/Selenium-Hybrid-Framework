@@ -31,15 +31,15 @@ public class WebTableTest {
 		System.out.println();
 
 		// Locate first row data
-		List<WebElement> firstRowData = driver.findElements(By.xpath("//table//tbody//tr[1]//td"));
+		List<WebElement> firstrowData = driver.findElements(By.xpath("//table//tbody//tr[1]//td"));
 
 		// Print first row data
 		System.out.println("=== First row DATA ===");
-		for(WebElement data :firstRowData) {
+		for(WebElement data :firstrowData) {
 			System.out.println(data.getText());
 		}
 		
-		System.out.println("Total number of data cells in first row : "+firstRowData.size());
+		System.out.println("Total number of data cells in first row : "+firstrowData.size());
 		
 		System.out.println();
 
@@ -60,8 +60,8 @@ public class WebTableTest {
 		// =========================================
 				// FLOW 3 — VALIDATION
 		// =========================================
-		 WebElement firstRowFirstColumnElement  = driver.findElement(By.xpath("//tbody//tr[1]//td[1]"));
-		 String actualText = firstRowFirstColumnElement .getText();
+		 WebElement firstrowFirstColumnElement  = driver.findElement(By.xpath("//tbody//tr[1]//td[1]"));
+		 String actualText = firstrowFirstColumnElement .getText();
 
 		 if(actualText.equals("Iuvaret0")) {
 		 	System.out.println("PASS: 'Iuvaret0' is present in table");
